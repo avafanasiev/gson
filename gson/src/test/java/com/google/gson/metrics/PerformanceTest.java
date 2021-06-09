@@ -218,6 +218,18 @@ public class PerformanceTest extends TestCase {
     System.out.printf("Deserialize classes avg time: %d ms\n", avg);
   }
   
+  public void disabled_testDeserializeClasses2() {
+    String json = buildJsonForClassWithList();
+    ClassWithList[] target = new ClassWithList[NUM_ITERATIONS];
+    long t1 = System.currentTimeMillis(); 
+    for (int i = 0; i < NUM_ITERATIONS; ++i) {
+      target[i] = gson.fromJson(json, ClassWithList.class);
+    }
+    long t2 = System.currentTimeMillis(); 
+    long avg = (t2 - t1) / NUM_ITERATIONS;
+    System.out.printf("Deserialize classes avg time: %d ms\n", avg);
+  }
+  
   public void disable_testLargeObjectSerializationAndDeserialization() {
     Map<String, Long> largeObject = new HashMap<String, Long>();
     for (long l = 0; l < 100000; l++) {
